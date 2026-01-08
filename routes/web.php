@@ -1,10 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Client\HomeController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Client\ProductController;
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OrderController;
+
+// Client Routes
 Route::get('/', [HomeController::class, 'index'])->name('client.index');
 Route::get('/about', [HomeController::class, 'about'])->name('client.about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('client.contact');
@@ -21,6 +26,8 @@ Route::get('/login', function () { return view('client.auth.login'); })->name('l
 Route::get('/register', function () { return view('client.auth.register'); })->name('register');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('client.product.detail');
 
+// Admin Routes
+//Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -35,4 +42,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/products', function () {
         return "Submit form success";
     })->name('products.store');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'show']) ->name('orders.show');
+    Route::put('/orders/{id}', [OrderController::class, 'update']) ->name('orders.update');
 });
