@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="nav-item {{ Request::routeIs('client.cart') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('client.cart') }}">
+                        <a class="nav-link" href="#">
                             <i class="fa fa-shopping-cart"></i> Cart (0)
                         </a>
                     </li>
@@ -45,7 +45,7 @@
                                 {{ Auth::user()->name ?? 'User' }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
