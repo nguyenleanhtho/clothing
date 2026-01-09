@@ -33,27 +33,14 @@
                     </li>
 
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
-                    @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                                {{ Auth::user()->name ?? 'User' }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">Logout</button>
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
+    <li class="nav-item {{ Request::routeIs('login') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('login') }}">Login</a>
+    </li>
+    <li class="nav-item {{ Request::routeIs('register') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('register') }}">Register</a>
+    </li>
+@else
+    @endguest
 
                 </ul>
             </div>

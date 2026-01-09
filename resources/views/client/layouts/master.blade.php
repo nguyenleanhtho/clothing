@@ -31,6 +31,7 @@
     @include('client.partials.footer')
 
 
+
     <script src="{{ asset('client/vonder/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('client/vonder/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
