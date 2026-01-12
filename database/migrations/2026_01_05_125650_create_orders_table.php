@@ -15,10 +15,11 @@ return new class extends Migration
         $table->id();
         $table->foreignId('user_id')->constrained('users');
         $table->string('status')->default('pending'); // pending, shipping, completed...
-        
-        // // Nên lưu lại địa chỉ/sđt tại thời điểm đặt hàng (phòng khi user đổi địa chỉ sau này)
-        // $table->string('shipping_address')->nullable(); 
-        // $table->string('shipping_phone')->nullable();
+        $table->string('name');         
+        $table->string('phone');  
+        $table->string('address');
+        $table->decimal('total_money', 12, 0);
+        $table->string('payment_method')->default('COD');
         
         $table->timestamps();
         });

@@ -71,4 +71,34 @@ class CartController extends Controller
 
         return view('client.cart_details', compact('cartDetails'));
     }
+
+    // Cập nhật số lượng
+    public function update(Request $request, $id)
+    {
+        $cartDetail = CartDetail::find($id);
+
+        if($cartDetail)
+        {
+            $cartDetail->quantity = $request->quantity;
+            $cartDetail->save();
+
+            return redirect()->back()->with('success');
+        }
+
+        return redirect()->back()->with('error');
+    }
+
+    // Xóa sản phẩm
+    public function remove($id)
+    {
+        $cartDetail = CartDetail::find($id);
+
+        if($cartDetail)
+        {
+            $cartDetail->delete();
+            return redirect()->back()->with('success');
+        }
+
+        return redirect()->back()->with('error');
+    }
 }
