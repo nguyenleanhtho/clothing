@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use App\Models\Category;
 use Illuminate\Support\Facades\DB;
-
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         // Tổng doanh thu từ các đơn đã hoàn thành
         $revenue = DB::table('orders')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')

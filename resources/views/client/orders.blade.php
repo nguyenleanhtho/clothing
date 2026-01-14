@@ -28,6 +28,7 @@
                             <th>Sản phẩm</th>
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
+                            <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,6 +62,20 @@
                                         <span class="badge badge-success" style="background-color: #28a745;">Hoàn thành</span>
                                     @else
                                         <span class="badge badge-secondary" style="background-color: #6c757d;">Đã hủy</span>
+                                    @endif
+                                </td>
+                                
+                                <td>
+                                    @if($order->status == 'pending')
+                                        <form action="{{ route('client.orders.cancel', $order->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')">
+                                                <i class="fa fa-trash"></i> Hủy
+                                            </button>
+                                        </form>
+                                    @else
+                                        <span class="text-muted text-sm">-</span>
                                     @endif
                                 </td>
                             </tr>

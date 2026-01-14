@@ -59,12 +59,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('client.checkout.process');
 
     Route::get('/my-orders', [ClientOrderController::class, 'index'])->name('client.orders.index');
+    Route::put('/orders/{id}/cancel', [ClientOrderController::class, 'cancel'])->name('client.orders.cancel');
 });
 
 Route::middleware('auth', 'role:admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('categories', CategoryController::class);
     Route::resource('users', UserController::class);
+    Route::get('/products/low-stock', [AdminProductController::class, 'lowStock'])->name('products.lowStock');
     Route::resource('products', AdminProductController::class);
     Route::resource('orders', AdminOrderController::class);
 });

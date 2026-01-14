@@ -50,7 +50,7 @@
                                 @php
                                     // Xử lý ảnh
                                     $img = $item->product->images->first() 
-                                            ? asset($item->product->images->first()->img_url) 
+                                            ? asset('storage/' . $item->product->images->first()->img_url) 
                                             : asset('client/assets/images/product_01.jpg');
 
                                     // Tính thành tiền

@@ -1,6 +1,10 @@
 <header class="">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
+            <a class="navbar-brand" href="{{ route('client.index') }}" style="font-size: 24px; font-weight: bold; color: #2196F3;">
+                Blue Store
+            </a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,7 +36,18 @@
                     {{-- Giỏ hàng --}}
                     <li class="nav-item {{ Request::routeIs('client.cart') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('client.cart') }}">
-                            <i class="fa fa-shopping-cart"></i> Giỏ hàng (0)
+                            <i class="fa fa-shopping-cart"></i> Giỏ hàng (<span id="cart-count">
+                                @php
+                                    $cartCount = 0;
+                                    if(Auth::check()) {
+                                        $cart = \App\Models\Cart::where('user_id', Auth::id())->first();
+                                        if($cart) {
+                                            $cartCount = \App\Models\CartDetail::where('cart_id', $cart->id)->sum('quantity');
+                                        }
+                                    }
+                                    echo $cartCount;
+                                @endphp
+                            </span>)
                         </a>
                     </li>
 

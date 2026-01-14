@@ -50,6 +50,14 @@ class Product extends Model
      */
     public function getPrimaryImageAttribute()
     {
+        return $this->firstImage();
+    }
+
+    /**
+     * Lấy ảnh đầu tiên của sản phẩm
+     */
+    public function firstImage()
+    {
         return $this->images()->first();
     }
 }
