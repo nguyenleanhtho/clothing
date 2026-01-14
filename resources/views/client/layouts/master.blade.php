@@ -21,6 +21,27 @@
 
 <body>
 
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999; width: 400px; max-width: 90vw;">
+            <strong>Thông báo:</strong> {{ $message }}
+            <p style="margin-top: 10px; margin-bottom: 0;"><span id="countdown">3</span> giây nữa sẽ chuyển về trang chủ...</p>
+        </div>
+
+        <script>
+            let count = 5;
+            const countdownElement = document.getElementById('countdown');
+            
+            const timer = setInterval(() => {
+                count--;
+                countdownElement.textContent = count;
+                
+                if (count <= 0) {
+                    clearInterval(timer);
+                    window.location.href = '{{ route("client.index") }}';
+                }
+            }, 1000);
+        </script>
+    @endif
 
     @include('client.partials.header')
 

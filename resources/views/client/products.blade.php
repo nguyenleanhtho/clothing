@@ -39,7 +39,7 @@
                       <div class="product-item">
                         
                         @php
-                            $img = $product->images->first() ? asset($product->images->first()->img_url) : asset('client/assets/images/product_01.jpg');
+                            $img = $product->images->first() ? asset('storage/'.$product->images->first()->img_url) : asset('client/assets/images/product_01.jpg');
                         @endphp
                         <a href="{{ route('client.product.detail', ['id' => $product->id]) }}">
                             <img src="{{ $img }}" alt="" style="height: 250px; object-fit: cover;">

@@ -3,17 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Client\ProductController;
+use App\Http\Controllers\Client\ProductController as ClientProductController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\CheckoutController;
-use App\Http\Controllers\Client\OrderController;
+use App\Http\Controllers\Client\OrderController as ClientOrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.index');
 Route::get('/about', [HomeController::class, 'about'])->name('client.about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('client.contact');
-Route::get('/products', [ProductController::class, 'index'])->name('client.products');
+Route::get('/products', [ClientProductController::class, 'index'])->name('client.products');
 
 // Route::post('/logout', function () {
 //     return redirect()->route('client.index');
@@ -31,18 +35,9 @@ Route::post('/cart/add', [CartController::class, 'addToCart'])->name('client.car
 //Route::post('/register', [AuthController::class, 'register']);
 
 //Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/product/{id}', [ProductController::class, 'detail'])->name('client.product.detail');
-require __DIR__.'/auth.php';
+Route::get('/product/{id}', [ClientProductController::class, 'detail'])->name('client.product.detail');
+
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-    Route::get('/products', function () {
-        return view('admin.products.index');
-    })->name('products.index');
-
-    Route::get('/products/create', function () {
-        return view('admin.products.create');
-    })->name('products.create');
 
     Route::post('/products', function () {
         return "Submit form success";
@@ -63,5 +58,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('client.checkout');
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('client.checkout.process');
 
-    Route::get('/my-orders', [OrderController::class, 'index'])->name('client.orders.index');
+    Route::get('/my-orders', [ClientOrderController::class, 'index'])->name('client.orders.index');
 });
+
+Route::middleware('auth', 'role:admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', AdminProductController::class);
+    Route::resource('orders', AdminOrderController::class);
+});
+
+require __DIR__.'/auth.php';
