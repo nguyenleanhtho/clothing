@@ -39,7 +39,7 @@
                         <td class="p-3 text-center">{{ $product->id }}</td>
                         <td class="p-3 text-center">
                             @if ($product->primaryImage)
-                                <img src="{{ asset('storage/'.$product->primaryImage->img_url) }}" class="w-12 h-12 object-cover mx-auto">
+                                <img src="{{ $product->primaryImage->url }}" class="w-12 h-12 object-cover mx-auto">
                             @endif
                         </td>
                         <td class="p-3 font-medium">{{ $product->name }}</td>

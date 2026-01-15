@@ -49,8 +49,8 @@
                             @foreach($cartDetails as $item)
                                 @php
                                     // Xử lý ảnh
-                                    $img = $item->product->images->first() 
-                                            ? asset('storage/' . $item->product->images->first()->img_url) 
+                                    $img = $item->product->images->first()
+                                            ? $item->product->images->first()->url
                                             : asset('client/assets/images/product_01.jpg');
 
                                     // Tính thành tiền

@@ -1,0 +1,15 @@
+/* App-specific overrides for the TemplateMo theme.
+   Keep this file loaded AFTER templatemo-sixteen.css. */
+
+/* Auth pages: don't let the absolutely-positioned header overlap the form.
+   Make header participate in normal document flow on these pages. */
+body.auth-page header,
+body.auth-page header.background-header {
+  position: relative;
+  height: auto;
+}
+
+body.auth-page .auth-container {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}

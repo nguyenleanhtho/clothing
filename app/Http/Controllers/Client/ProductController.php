@@ -38,8 +38,8 @@ class ProductController extends Controller
     // Lấy dữ liệu và phân trang
     public function index()
     {
-        // lấy sản phẩm mới nhất, ảnh, nỗi trang 6 sản phẩm
-        $products = \App\Models\Product::with('images')->latest()->paginate(6);
+        // lấy sản phẩm mới nhất, ảnh, nỗi trang 9 sản phẩm
+        $products = \App\Models\Product::with('images')->latest()->paginate(9);
         
         return view('client.products', compact('products'));
     }

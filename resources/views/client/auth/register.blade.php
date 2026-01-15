@@ -1,7 +1,9 @@
 @extends('client.layouts.master')
 
+@section('body_class', 'auth-page')
+
 @section('content')
-<div class="container" style="margin-top: 80px; margin-bottom: 80px;">
+<div class="container auth-container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">

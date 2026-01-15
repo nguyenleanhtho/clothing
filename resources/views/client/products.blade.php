@@ -39,7 +39,7 @@
                       <div class="product-item">
                         
                         @php
-                            $img = $product->images->first() ? asset('storage/'.$product->images->first()->img_url) : asset('client/assets/images/product_01.jpg');
+                          $img = $product->images->first() ? $product->images->first()->url : asset('client/assets/images/product_01.jpg');
                         @endphp
                         
                         <div style="position: relative; width: 100%; height: 250px; overflow: hidden;">
@@ -70,7 +70,7 @@
                               <h4>{{ Str::limit($product->name, 20) }}</h4>
                           </a>
                           
-                          <h6>${{ number_format($product->price, 2) }}</h6>
+                          <h6>{{ number_format($product->price) }} đ</h6>
                           
                           <p>{{ Str::limit($product->description, 50) }}</p>
                           

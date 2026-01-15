@@ -48,7 +48,7 @@
                 <div class="flex gap-3 flex-wrap mb-3">
                     @foreach ($product->images as $img)
                         <div class="relative border p-2 rounded hover:bg-red-50 transition">
-                            <img src="{{ asset('storage/'.$img->img_url) }}" class="w-24 h-24 object-cover rounded">
+                            <img src="{{ $img->url }}" class="w-24 h-24 object-cover rounded">
                             <label class="absolute top-1 left-1 flex items-center">
                                 <input type="checkbox" name="delete_images[]" value="{{ $img->id }}" 
                                        class="w-4 h-4 cursor-pointer" title="Chọn để xóa">

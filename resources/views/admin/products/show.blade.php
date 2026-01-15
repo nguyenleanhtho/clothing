@@ -28,7 +28,7 @@
                 <div class="grid grid-cols-3 gap-4">
                     @foreach($product->images as $image)
                         <div class="w-full aspect-square rounded-lg border overflow-hidden bg-gray-100 flex items-center justify-center">
-                            <img src="{{ asset('storage/' . $image->img_url) }}" 
+                                <img src="{{ $image->url }}" 
                                  alt="{{ $product->name }}"
                                  class="w-full h-full object-cover">
                         </div>

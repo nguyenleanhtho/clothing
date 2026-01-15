@@ -34,7 +34,7 @@
                             <td class="p-3 text-center font-medium">{{ $product->id }}</td>
                             <td class="p-3 text-center">
                                 @if ($product->primaryImage)
-                                    <img src="{{ asset('storage/'.$product->primaryImage->img_url) }}" class="w-12 h-12 object-cover mx-auto rounded">
+                                    <img src="{{ $product->primaryImage->url }}" class="w-12 h-12 object-cover mx-auto rounded">
                                 @else
                                     <span class="text-gray-400">-</span>
                                 @endif

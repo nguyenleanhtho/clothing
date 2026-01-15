@@ -39,7 +39,7 @@
             <div class="product-item">
               <div style="position: relative; width: 100%; height: 300px; overflow: hidden;">
                 <a href="{{ route('client.product.detail', $product->id) }}" style="display: block; width: 100%; height: 100%;">
-                  <img src="{{ $product->firstImage() ? asset('storage/' . $product->firstImage()->img_url) : asset('client/assets/images/product_01.jpg') }}" alt="{{ $product->name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                  <img src="{{ $product->firstImage() ? $product->firstImage()->url : asset('client/assets/images/product_01.jpg') }}" alt="{{ $product->name }}" style="width: 100%; height: 100%; object-fit: cover;">
                 </a>
                 
                 <!-- Status Badge at bottom-right corner -->

@@ -15,11 +15,12 @@
     <link href="{{ asset('client/vonder/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('client/assets/css/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('client/assets/css/templatemo-sixteen.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/app-overrides.css') }}">
     <link rel="stylesheet" href="{{ asset('client/assets/css/owl.css') }}">
 
 </head>
 
-<body>
+<body class="@yield('body_class')">
 
     @if ($message = Session::get('error'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999; width: 400px; max-width: 90vw;">

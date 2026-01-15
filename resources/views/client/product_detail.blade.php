@@ -22,7 +22,7 @@
             <div class="col-md-4">
                 <div style="text-align: center; background-color: #f9f9f9; padding: 20px; border-radius: 10px;">
                     @php
-                        $mainImage = $product->images->first() ? asset('storage/'.$product->images->first()->img_url) : asset('client/assets/images/product_01.jpg');
+                        $mainImage = $product->images->first() ? $product->images->first()->url : asset('client/assets/images/product_01.jpg');
                     @endphp
                     
                     <img src="{{ $mainImage }}" class="img-fluid" 
@@ -32,7 +32,7 @@
                 @if ($product->images->count() > 1)
                 <div class="mt-3 d-flex flex-wrap gap-2">
                     @foreach ($product->images as $img)
-                        <img src="{{ asset('storage/'.$img->img_url) }}" alt="thumb" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid #eee;">
+                        <img src="{{ $img->url }}" alt="thumb" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid #eee;">
                     @endforeach
                 </div>
                 @endif
@@ -85,7 +85,7 @@
             <div class="col-md-4">
                 <div class="product-item">
                     @php
-                        $img = $item->images->first() ? asset('storage/'.$item->images->first()->img_url) : asset('client/assets/images/product_02.jpg');
+                        $img = $item->images->first() ? $item->images->first()->url : asset('client/assets/images/product_02.jpg');
                     @endphp
                     <a href="{{ route('client.product.detail', $item->id) }}">
                         <img src="{{ $img }}" alt="" style="width: 100%; height: 280px; object-fit: cover;">
